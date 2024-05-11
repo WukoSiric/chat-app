@@ -1,4 +1,6 @@
 <script>
+import io from "socket.io-client"; 
+
 export default {
   data() {
     return {
@@ -19,6 +21,19 @@ export default {
         console.error("Error fetching databases: ", error); 
       }
     }
+  },
+  mounted() {
+    // Connect to socket.io server 
+    this.socket = io("http://localhost:3000");
+
+    this.socket.on("connect", () => {
+      console.log("Connected to socket.io server!");
+    });
+
+    // Disconnection 
+    this.socket.on("disconnect", () => {
+      console.log("Disconnected from socket.io server!");
+    });
   }
 }; 
 </script>

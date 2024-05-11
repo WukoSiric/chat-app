@@ -7,7 +7,12 @@ const { Server } = require('socket.io');
 
 const app = express();
 const server = http.createServer(app); // Create an HTTP server
-const io = new Server(server); // Attach Socket.IO to the HTTP server
+const io = new Server(server, {
+    cors: {
+        origin: '*',
+        methods: ['GET', 'POST']
+    }
+})
 
 
 // Middleware
