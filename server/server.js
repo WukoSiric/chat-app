@@ -42,13 +42,14 @@ server.listen(PORT, () => {
 
 // Socket.IO logic goes here
 io.on('connection', (socket) => {
-    console.log('a user connected');
+    console.log('a user connected: ' + socket.id);
 
     socket.on('disconnect', () => {
-        console.log("client disconnected"); 
+        console.log(socket.id + ' disconnected'); 
     })
 
     socket.on('message', (msg) => {
-        console.log('message: ' + msg);
+        console.log(socket.id + ': ' + msg);
+        io.emit('message', socket.id, msg); 
     })
 });
