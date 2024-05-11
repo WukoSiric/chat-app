@@ -7,7 +7,6 @@ export default {
   },
   methods: {
     async apiTest() {
-      console.log("http://localhost:3000"+ "/api");
       try { 
         const response = await fetch("http://localhost:3000" + "/api");
         if (response.ok) {
