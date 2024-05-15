@@ -7,30 +7,38 @@ export default {
       inputValue: '', // Initialize input value as an empty string
       databases: [],
       messages: [], 
+      username: '', 
       socket: null
     };
   },
   methods: {
-    async apiTest() {
+    async generateUsername() {
       try { 
-        const response = await fetch('http://localhost:3000' + '/api');
+        const response = await fetch('http://localhost:3000' + '/generateUsername');
         if (response.ok) {
-          console.log(await response.text());
+          const data = await response.json(); 
+          this.username = data.username;
         } 
         else {
           // Response was not okay
         }
       } catch (error) {
-        console.error('Error fetching databases: ', error); 
+        console.error('Error reaching server: ', error); 
       }
     },
     sendMessage() {
+      if (this.inputValue === '') {
+        return;
+      }
+
       console.log('Sending message:', this.inputValue);
-      this.socket.emit('message', this.inputValue);
+      this.socket.emit('message', {username: this.username, message: this.inputValue});
       this.inputValue = '';
-    }
+    },
   },
   mounted() {
+    this.generateUsername();
+
     this.socket = io('http://localhost:3000');
 
     this.socket.on('connect', () => {
@@ -41,10 +49,12 @@ export default {
       console.log('Disconnected from socket.io server!');
     });
 
-    this.socket.on('message', (id, message) => {
+    this.socket.on('message', ({username, message}) => {
       console.log('Received message:', message);
-      this.messages.push(id + ': ' + message);
+      this.messages.push(username + ': ' + message);
     });
+
+    this.username = 'Anonymous';
   }
 }; 
 </script>
@@ -53,7 +63,12 @@ export default {
   <div>
     <h1>Some heading...</h1>
     <p>Hello World!</p>
-    <button @click='apiTest'>Talk to NodeJS!</button>
+    <h2> Adjust Username </h2>
+    <form> 
+      <input id="username" v-model="username" autocomplete='off'/>
+      {{ username }}
+    </form>
+    <h2> Chat </h2>
     <form @submit.prevent='sendMessage'>
       <input v-model='inputValue' autocomplete='off'/>
       <button type='submit'>Send</button>

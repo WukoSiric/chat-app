@@ -4,6 +4,8 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const cors = require('cors');
 const { Server } = require('socket.io');
+const fs = require('fs');
+const path = require('path');
 
 const app = express();
 const server = http.createServer(app); // Create an HTTP server
@@ -34,6 +36,18 @@ app.get('/api', (req, res) => {
     res.send('Hello from the backend!');
 });
 
+function getRandomUsername() {
+    const filePath = path.join(__dirname, 'usernames.txt');
+    const usernames = fs.readFileSync(filePath, 'utf-8').split('\n').filter(Boolean);
+    const randomIndex = Math.floor(Math.random() * usernames.length);
+    return usernames[randomIndex];
+}
+
+app.get('/generateUsername', (req, res) => {
+    const username = getRandomUsername(); 
+    res.json({username})
+});
+
 // Start the server
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
@@ -42,14 +56,14 @@ server.listen(PORT, () => {
 
 // Socket.IO logic goes here
 io.on('connection', (socket) => {
-    console.log('a user connected: ' + socket.id);
+    console.log(socket.id + ' connected');
 
     socket.on('disconnect', () => {
         console.log(socket.id + ' disconnected'); 
     })
 
-    socket.on('message', (msg) => {
-        console.log(socket.id + ': ' + msg);
-        io.emit('message', socket.id, msg); 
+    socket.on('message', ({username, message}) => {
+        console.log(username + ': ' + message);
+        io.emit('message', {username, message});
     })
 });
