@@ -111,7 +111,8 @@ html {
 	flex-direction: column;
 	align-items: flex-end;
 	margin: 20px 20px 0px 20px;
-	height: 90%;
+	min-height: 90%;
+	max-height: 1vh;
 	overflow-y: auto;
 }
 
