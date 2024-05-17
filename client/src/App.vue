@@ -84,7 +84,7 @@ export default {
 			<div class='menu'>
 				<MeetButton id="meet"/>
 				<GlobalChatButton id="global-chat"/>
-				<SearchBox id="search" :modelValue='query' placeholder='Search' />
+				<SearchBox id="search-box" :modelValue='query' placeholder='Search' />
 				<div class="spacer"></div>
 				<UserSection id="user-section"/>
 			</div>
@@ -135,11 +135,11 @@ html {
 	grid-template-areas: 
 	"meet"
 	"global-chat"
-	"searchbox"
+	"search-box"
 	"spacer"
 	"footer"
 	;
-	grid-template-rows: auto auto 30px 2fr auto;
+	grid-template-rows: auto auto auto 1fr auto;
 	grid-gap: 20px;
 }
 
@@ -149,6 +149,11 @@ html {
 
 .menu > #global-chat {
 	grid-area: global-chat;
+}
+
+.menu > #search-box { 
+	grid-area: search-box;
+	justify-self: center;
 }
 
 .menu > .spacer {

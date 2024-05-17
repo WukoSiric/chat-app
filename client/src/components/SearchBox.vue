@@ -46,10 +46,9 @@ export default {
 }
 
 #search-box {
-	display: block;
 	margin: 20px;
 	padding: 10px;
-	width: 50%;
+	width: 70%;
 	border: 2px solid white;
 	color: white;
 	border-radius: 10px;
