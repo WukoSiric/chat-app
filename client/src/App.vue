@@ -91,6 +91,9 @@ export default {
 </template>
 
 <style>
+  html {
+    font-family: 'sarabun', sans-serif;
+  }
 /* Desktop styling */
   .app {
     display: grid; 
