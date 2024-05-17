@@ -25,16 +25,16 @@ export default {
     background-color: #262626;
     padding: 15px;
     border-radius: 25px;
-    width: 90%;
-    margin: 10px 0px;
+    width: 50%;
+    margin: 20px 40px;
     font-size: 12pt;
     box-shadow: 10px 5px 10px #00000021;
-    /* Text color  */
 }
 
 .foreign {
     background-color: #261464;
     align-self: start;
+    /* margin: 5% 5% 5% 10%; */
 }
 
 #username {

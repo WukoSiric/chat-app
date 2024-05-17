@@ -114,7 +114,7 @@ html {
 	"menu header"
 	"menu chat-window"
 	;
-	grid-template-columns: 4fr 9fr;
+	grid-template-columns: 3fr 9fr;
 	grid-template-rows: 0.5fr 10fr;
 	color: white;
 	height: 100vh;
