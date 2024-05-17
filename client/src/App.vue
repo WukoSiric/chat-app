@@ -2,21 +2,15 @@
 import io from 'socket.io-client';
 import InputBox from './components/InputBox.vue';
 import MessageBox from './components/MessageBox.vue';
-import SearchBox from './components/SearchBox.vue';
-import MeetButton from './components/MeetButton.vue';
-import GlobalChatButton from './components/GlobalChatButton.vue';
-import UserSection from './components/UserSection.vue';
-import ChatHeader from './components/ChatHeader.vue'
+import ChatHeader from './components/ChatHeader.vue';
+import ChatMenu from './components/ChatMenu.vue';
 
 export default {
 	components: {
 		InputBox,
 		MessageBox,
-		SearchBox,
-		MeetButton,
-		GlobalChatButton,
-		UserSection,
-		ChatHeader
+		ChatHeader,
+		ChatMenu
 	},
 	data() {
 		return {
@@ -82,13 +76,7 @@ export default {
 <template>
 	<div class='app'>
 		<ChatHeader class="header" /> 
-		<div class='menu'>
-			<MeetButton id="meet"/>
-			<GlobalChatButton id="global-chat"/>
-			<SearchBox id="search-box" :modelValue='query' placeholder='Search' />
-			<div class="spacer"></div>
-			<UserSection id="user-section"/>
-		</div>
+		<ChatMenu class="menu" />
 		<div class='chat-window'>
 			<div class="messages">
 				<MessageBox v-for='messageObject in messages' :key='messageObject' :messageObject='messageObject'
@@ -142,46 +130,6 @@ html {
 
 .app > .header { 
 	grid-area: header;
-}
-
-/* Menu  */
-.menu {
-	background-color: #191919;
-	background-image:
-		radial-gradient(circle at -15vw -40vh, #f2d54152, #191919 45%);
-	background-repeat: no-repeat;
-	height: 100vh;
-	display: grid; 
-	grid-template-areas: 
-	"meet"
-	"global-chat"
-	"search-box"
-	"spacer"
-	"footer"
-	;
-	grid-template-rows: auto auto auto 2fr auto;
-	grid-gap: 1px;
-}
-
-.menu > #meet {
-	grid-area: meet;
-}
-
-.menu > #global-chat {
-	grid-area: global-chat;
-}
-
-.menu > #search-box { 
-	grid-area: search-box;
-	justify-self: center;
-}
-
-.menu > .spacer {
-	grid-area: spacer;
-}
-
-.menu > #footer {
-	grid-area: footer;
 }
 
 .chat-window {
