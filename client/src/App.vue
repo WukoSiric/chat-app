@@ -76,8 +76,8 @@ export default {
         {{ username }}
       </div>
       <div class='chatwindow'>
-          <div v-for='message in messages' :key='message'>
-            <MessageBox :message=message.message :isReceived='message.isReceived'></MessageBox>
+          <div v-for='messageObject in messages' :key='messageObject'>
+            <MessageBox :messageObject='messageObject' :isReceived='messageObject.isReceived'></MessageBox>
           </div>
           <form @submit.prevent='sendMessage'>
             <InputBox v-model='inputValue' placeholder='Type a chat message...'/>

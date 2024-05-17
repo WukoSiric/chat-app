@@ -6,9 +6,8 @@ export default {
             default: false,
             required: false
         },
-        message: {
-            type: String, 
-            default: "Message is loading...", 
+        messageObject: {
+            type: Object,
             required: true
         }
     }  
@@ -16,8 +15,8 @@ export default {
 </script>
 <template>
     <div class="messageBox" :class='{foreign : isReceived}'>
-        {{  isReceived ? 'Foreign: ' : 'Local: ' }}
-        {{ message }}
+        {{  isReceived ? messageObject.username : 'You' }}:
+        {{ messageObject.message }}
     </div>
 </template>
 <style> 
