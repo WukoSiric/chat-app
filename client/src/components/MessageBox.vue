@@ -15,7 +15,7 @@ export default {
 </script>
 <template>
     <div class="messageBox" :class='{foreign : isReceived}'>
-        {{  isReceived ? messageObject.username : 'You' }}:
+        <span id="username">{{  isReceived ? messageObject.username : 'You' }}:</span>
         {{ messageObject.message }}
     </div>
 </template>
@@ -35,5 +35,12 @@ export default {
 .foreign {
     background-color: #261464;
     align-self: start;
+}
+
+#username {
+    font-weight: bold;
+    color: #e4c553;
+    margin-right: 10px;
+    font-size: 14pt;
 }
 </style>
