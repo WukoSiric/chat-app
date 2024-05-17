@@ -81,7 +81,7 @@ export default {
 </script>
 <template>
 	<div class='app'>
-		<ChatHeader class="chat-header" /> 
+		<ChatHeader class="header" /> 
 		<div class='menu'>
 			<MeetButton id="meet"/>
 			<GlobalChatButton id="global-chat"/>
@@ -140,7 +140,7 @@ html {
 	grid-area: menu; 
 }
 
-.app > .chat-header { 
+.app > .header { 
 	grid-area: header;
 }
 
