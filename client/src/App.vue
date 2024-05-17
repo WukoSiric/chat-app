@@ -112,12 +112,22 @@ export default {
 
   .menu {
     background-color: #191919;
-    height: 100vh;;
+    background-image:
+      radial-gradient(circle at -15vw -40vh, #f2d54152, #191919 45%);
+    background-repeat: no-repeat;
+    height: 100vh;
   }
 
   .chatwindow {
     background-color: #101010;
-    background-image: linear-gradient(#101010, #b261f510, #261164);
+    background-image: 
+      radial-gradient(circle at top right, #4f22f223, #101010 30%),
+      radial-gradient(circle at bottom left, #4f22f213, #101010 50%), 
+      radial-gradient(circle at 50vw 30vh, #4f22f228, #101010 40%),
+      radial-gradient(circle at top left, #000000, #101010 40%);
+    background-size: 50% 50%;
+    background-position: top right, bottom left, bottom right, top left;
+    background-repeat: no-repeat;
     height: 100vh;
     display: flex;
     flex-direction: column;

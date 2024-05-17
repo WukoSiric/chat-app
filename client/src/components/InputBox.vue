@@ -43,6 +43,7 @@ export default {
         width: 90%;
         border: 0px;
         border-radius: 10px;
+        font-size: 15px;
     }
 
     #input:focus {
