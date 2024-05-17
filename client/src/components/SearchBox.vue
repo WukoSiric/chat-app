@@ -1,7 +1,12 @@
 <script>
+import MagnifyIcon from '../assets/svg/MagnifyIcon.vue';
+
 export default {
+    components: {
+        MagnifyIcon
+    },
     props: {
-        modelValue: {
+        query: {
             type: String,
             required: true
         },
@@ -31,23 +36,40 @@ export default {
 </script>
 
 <template>
-    <div>
-        <input id="input" type="text" autocomplete="off" :value="internalValue" @input="updateValue" :placeholder="placeholder"/>
+    <div id="search-box-container">
+        <!-- <MagnifyIcon id="search-icon"/> -->
+        <input id="search-box" type="text" autocomplete="off" :value="internalValue" @input="updateValue" :placeholder="placeholder"/>
     </div>
 </template>
 
 <style>
-    #input { 
+    ::placeholder {
+        color: rgb(190, 190, 190); 
+        font-weight: 500;
+    }
+
+    #search-box { 
         margin: 20px;
         padding: 10px;
         width: 90%;
-        border: 0px;
+        border: 2px solid white;
+        color: white;
         border-radius: 10px;
         font-size: 15px;
-        background-color: white;
+        background-color: transparent;
+        
     }
 
-    #input:focus {
+    #search-box:focus {
         outline: 1px solid rgb(88, 88, 88);
+    }
+
+    #search-box-container { 
+        display: flex;
+    }
+
+    #search-icon { 
+        fill: white;
+        max-height: 40px;
     }
 </style>

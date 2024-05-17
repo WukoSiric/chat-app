@@ -2,11 +2,13 @@
 import io from 'socket.io-client'; 
 import InputBox from './components/InputBox.vue';
 import MessageBox from './components/MessageBox.vue';
+import SearchBox from './components/SearchBox.vue';
 
 export default {
   components: {
     InputBox,
-    MessageBox
+    MessageBox,
+    SearchBox
   },
   data() {
     return {
@@ -14,7 +16,8 @@ export default {
       databases: [],
       messages: [], 
       username: '', 
-      socket: null
+      socket: null,
+      query: ''
     };
   },
   methods: {
@@ -74,13 +77,14 @@ export default {
     <div class='app'>
       <div class='menu'>
         {{ username }}
+        <SearchBox :modelValue='query' placeholder='Search'/>
       </div>
-      <div class='chatwindow'>
+      <div class='chat-window'>
         <div class="messages">
           <MessageBox v-for='messageObject in messages' :key='messageObject' :messageObject='messageObject' :isReceived='messageObject.isReceived'></MessageBox>
         </div>
           <form @submit.prevent='sendMessage'>
-            <InputBox id='chatInput' v-model='inputValue' placeholder='Type a chat message...'/>
+            <InputBox id='chat-input' v-model='inputValue' placeholder='Type a chat message...'/>
           </form>
       </div>
     </div>
@@ -118,7 +122,7 @@ export default {
     height: 100vh;
   }
 
-  .chatwindow {
+  .chat-window {
     background-color: #101010;
     background-image: 
       radial-gradient(circle at top right, #4f22f223, #101010 30%),
