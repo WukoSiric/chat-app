@@ -36,11 +36,7 @@ export default {
 </script>
 
 <template>
-	<div id="search-box-container">
-		<!-- <MagnifyIcon id="search-icon"/> -->
-		<input id="search-box" type="text" autocomplete="off" :value="internalValue" @input="updateValue"
-			:placeholder="placeholder" />
-	</div>
+		<input id="search-box" type="text" autocomplete="off" :value="internalValue" @input="updateValue" :placeholder="placeholder" />
 </template>
 
 <style>
@@ -52,7 +48,7 @@ export default {
 #search-box {
 	margin: 20px;
 	padding: 10px;
-	width: 90%;
+	width: 50%;
 	border: 2px solid white;
 	color: white;
 	border-radius: 10px;
@@ -66,7 +62,8 @@ export default {
 }
 
 #search-box-container {
-	display: flex;
+	margin: 0;
+	padding: 0;
 }
 
 #search-icon {

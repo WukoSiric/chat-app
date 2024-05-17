@@ -4,13 +4,15 @@ import InputBox from './components/InputBox.vue';
 import MessageBox from './components/MessageBox.vue';
 import SearchBox from './components/SearchBox.vue';
 import MeetButton from './components/MeetButton.vue';
+import GlobalChatButton from './components/GlobalChatButton.vue';
 
 export default {
 	components: {
 		InputBox,
 		MessageBox,
 		SearchBox,
-		MeetButton
+		MeetButton,
+		GlobalChatButton
 	},
 	data() {
 		return {
@@ -80,6 +82,7 @@ export default {
 			<div class='menu'>
 				{{ username }}
 				<MeetButton />
+				<GlobalChatButton />
 				<SearchBox :modelValue='query' placeholder='Search' />
 			</div>
 			<div class='chat-window'>
@@ -125,6 +128,9 @@ html {
 		radial-gradient(circle at -15vw -40vh, #f2d54152, #191919 45%);
 	background-repeat: no-repeat;
 	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .chat-window {

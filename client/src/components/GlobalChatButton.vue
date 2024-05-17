@@ -1,16 +1,16 @@
 <script>
-import ForumOutlines from '../assets/svg/ForumOutlines.vue'; 
+import EarthIcon from '../assets/svg/EarthIcon.vue'; 
 
 export default { 
     components: {
-        ForumOutlines
+        EarthIcon
     }
 };
 </script>
 <template>
     <div class="meet">
-        <ForumOutlines id="forum-outlines" />
-        <h1>Meet</h1>
+        <EarthIcon id="earth-icon" />
+        <h1>Global Chat</h1>
     </div>
 </template>
 
@@ -37,7 +37,7 @@ export default {
     transform: scale(1.05);
 }
 
-#forum-outlines {
+#earth-icon {
     width: 50px;
     height: 50px;
     margin: 0px 10px;
