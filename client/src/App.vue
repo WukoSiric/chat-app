@@ -1,10 +1,12 @@
 <script>
 import io from 'socket.io-client'; 
 import InputBox from './components/InputBox.vue';
+import MessageBox from './components/MessageBox.vue';
 
 export default {
   components: {
-    InputBox
+    InputBox,
+    MessageBox
   },
   data() {
     return {
@@ -53,10 +55,15 @@ export default {
 
     this.socket.on('message', ({username, message}) => {
       console.log('Received message:', message);
-      this.messages.push(username + ': ' + message);
+      this.messages.push({username, message});
     });
 
     this.username = 'Anonymous';
+  },
+  computed: {
+    usersMatch (messageObject) {
+      return messageObject.username === this.username;
+    }
   }
 }; 
 </script>
@@ -68,11 +75,9 @@ export default {
         {{ username }}
       </div>
       <div class='chatwindow'>
-        <ul class='messages'>
-          <li v-for='message in messages' :key='message'>
-            {{ message }}
-          </li>
-          </ul>
+          <div v-for='message in messages' :key='message'>
+            <MessageBox :message=message.message></MessageBox>
+          </div>
           <form @submit.prevent='sendMessage'>
             <InputBox v-model='inputValue' placeholder='Type a chat message...'/>
           </form>
