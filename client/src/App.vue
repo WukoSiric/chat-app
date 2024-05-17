@@ -55,7 +55,8 @@ export default {
 
     this.socket.on('message', ({username, message}) => {
       console.log('Received message:', message);
-      this.messages.push({username, message});
+      const isReceived = username !== this.username;
+      this.messages.push({username, message, isReceived});
     });
 
     this.username = 'Anonymous';
@@ -76,7 +77,7 @@ export default {
       </div>
       <div class='chatwindow'>
           <div v-for='message in messages' :key='message'>
-            <MessageBox :message=message.message></MessageBox>
+            <MessageBox :message=message.message :isReceived='message.isReceived'></MessageBox>
           </div>
           <form @submit.prevent='sendMessage'>
             <InputBox v-model='inputValue' placeholder='Type a chat message...'/>
