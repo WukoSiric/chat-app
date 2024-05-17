@@ -121,7 +121,7 @@ html {
 /* Desktop styling */
 .app {
 	display: grid;
-	grid-template-columns: 5fr 12fr;
+	grid-template-columns: 3fr 9fr;
 	color: white;
 }
 
@@ -140,7 +140,7 @@ html {
 	"footer"
 	;
 	grid-template-rows: auto auto auto 1fr auto;
-	grid-gap: 20px;
+	grid-gap: 5px;
 }
 
 .menu > #meet {
