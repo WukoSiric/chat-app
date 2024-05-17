@@ -28,6 +28,7 @@ export default {
     width: 90%;
     margin: 10px 0px;
     font-size: 12pt;
+    box-shadow: 10px 5px 10px #00000021;
     /* Text color  */
 }
 

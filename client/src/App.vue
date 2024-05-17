@@ -80,7 +80,7 @@ export default {
           <MessageBox v-for='messageObject in messages' :key='messageObject' :messageObject='messageObject' :isReceived='messageObject.isReceived'></MessageBox>
         </div>
           <form @submit.prevent='sendMessage'>
-            <InputBox v-model='inputValue' placeholder='Type a chat message...'/>
+            <InputBox id='chatInput' v-model='inputValue' placeholder='Type a chat message...'/>
           </form>
       </div>
     </div>
@@ -99,7 +99,9 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    margin: 20px;
+    margin: 20px 20px 0px 20px;
+    height: 90%;
+    overflow-y : auto;
   }
 /* Desktop styling */
   .app {
@@ -110,12 +112,15 @@ export default {
 
   .menu {
     background-color: #191919;
-    height: 100%;
-    width: 100%;
+    height: 100vh;;
   }
 
   .chatwindow {
     background-color: #101010;
+    background-image: linear-gradient(#101010, #b261f510, #261164);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 /* Mobile */
 </style>
