@@ -5,6 +5,7 @@ import MessageBox from './components/MessageBox.vue';
 import SearchBox from './components/SearchBox.vue';
 import MeetButton from './components/MeetButton.vue';
 import GlobalChatButton from './components/GlobalChatButton.vue';
+import UserSection from './components/UserSection.vue';
 
 export default {
 	components: {
@@ -12,7 +13,8 @@ export default {
 		MessageBox,
 		SearchBox,
 		MeetButton,
-		GlobalChatButton
+		GlobalChatButton,
+		UserSection
 	},
 	data() {
 		return {
@@ -84,6 +86,7 @@ export default {
 				<MeetButton />
 				<GlobalChatButton />
 				<SearchBox :modelValue='query' placeholder='Search' />
+				<UserSection />
 			</div>
 			<div class='chat-window'>
 				<div class="messages">
