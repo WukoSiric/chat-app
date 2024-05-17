@@ -82,11 +82,11 @@ export default {
 	<div>
 		<div class='app'>
 			<div class='menu'>
-				{{ username }}
-				<MeetButton />
-				<GlobalChatButton />
-				<SearchBox :modelValue='query' placeholder='Search' />
-				<UserSection />
+				<MeetButton id="meet"/>
+				<GlobalChatButton id="global-chat"/>
+				<SearchBox id="search" :modelValue='query' placeholder='Search' />
+				<div class="spacer"></div>
+				<UserSection id="user-section"/>
 			</div>
 			<div class='chat-window'>
 				<div class="messages">
@@ -131,9 +131,32 @@ html {
 		radial-gradient(circle at -15vw -40vh, #f2d54152, #191919 45%);
 	background-repeat: no-repeat;
 	height: 100vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+	display: grid; 
+	grid-template-areas: 
+	"meet"
+	"global-chat"
+	"searchbox"
+	"spacer"
+	"footer"
+	;
+	grid-template-rows: auto auto 30px 2fr auto;
+	grid-gap: 20px;
+}
+
+.menu > #meet {
+	grid-area: meet;
+}
+
+.menu > #global-chat {
+	grid-area: global-chat;
+}
+
+.menu > .spacer {
+	grid-area: spacer;
+}
+
+.menu > #footer {
+	grid-area: footer;
 }
 
 .chat-window {

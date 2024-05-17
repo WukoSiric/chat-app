@@ -46,6 +46,7 @@ export default {
 }
 
 #search-box {
+	display: block;
 	margin: 20px;
 	padding: 10px;
 	width: 50%;
@@ -65,6 +66,7 @@ export default {
 #search-box-container {
 	margin: 0;
 	padding: 0;
+	width: 0;
 }
 
 #search-icon {
