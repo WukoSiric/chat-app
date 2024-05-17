@@ -76,9 +76,9 @@ export default {
         {{ username }}
       </div>
       <div class='chatwindow'>
-          <div v-for='messageObject in messages' :key='messageObject'>
-            <MessageBox :messageObject='messageObject' :isReceived='messageObject.isReceived'></MessageBox>
-          </div>
+        <div class="messages">
+          <MessageBox v-for='messageObject in messages' :key='messageObject' :messageObject='messageObject' :isReceived='messageObject.isReceived'></MessageBox>
+        </div>
           <form @submit.prevent='sendMessage'>
             <InputBox v-model='inputValue' placeholder='Type a chat message...'/>
           </form>
@@ -93,6 +93,13 @@ export default {
 <style>
   html {
     font-family: 'sarabun', sans-serif;
+  }
+
+  .messages {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 20px;
   }
 /* Desktop styling */
   .app {

@@ -26,12 +26,13 @@ export default {
     padding: 15px;
     border-radius: 25px;
     width: 90%;
-    margin: 20px 0px;
+    margin: 10px 0px;
     font-size: 12pt;
     /* Text color  */
 }
 
 .foreign {
     background-color: #261464;
+    align-self: start;
 }
 </style>
