@@ -6,6 +6,7 @@ import SearchBox from './components/SearchBox.vue';
 import MeetButton from './components/MeetButton.vue';
 import GlobalChatButton from './components/GlobalChatButton.vue';
 import UserSection from './components/UserSection.vue';
+import ChatHeader from './components/ChatHeader.vue'
 
 export default {
 	components: {
@@ -14,7 +15,8 @@ export default {
 		SearchBox,
 		MeetButton,
 		GlobalChatButton,
-		UserSection
+		UserSection,
+		ChatHeader
 	},
 	data() {
 		return {
@@ -77,30 +79,25 @@ export default {
 	}
 }; 
 </script>
-
 <template>
-	<div>
-		<div class='app'>
-			<div class='menu'>
-				<MeetButton id="meet"/>
-				<GlobalChatButton id="global-chat"/>
-				<SearchBox id="search-box" :modelValue='query' placeholder='Search' />
-				<div class="spacer"></div>
-				<UserSection id="user-section"/>
-			</div>
-			<div class='chat-window'>
-				<div class="messages">
-					<MessageBox v-for='messageObject in messages' :key='messageObject' :messageObject='messageObject'
-						:isReceived='messageObject.isReceived'></MessageBox>
-				</div>
-				<form @submit.prevent='sendMessage'>
-					<InputBox id='chat-input' v-model='inputValue' placeholder='Type a chat message...' />
-				</form>
-			</div>
+	<div class='app'>
+		<ChatHeader class="chat-header" /> 
+		<div class='menu'>
+			<MeetButton id="meet"/>
+			<GlobalChatButton id="global-chat"/>
+			<SearchBox id="search-box" :modelValue='query' placeholder='Search' />
+			<div class="spacer"></div>
+			<UserSection id="user-section"/>
 		</div>
-	</div>
-	<div>
-
+		<div class='chat-window'>
+			<div class="messages">
+				<MessageBox v-for='messageObject in messages' :key='messageObject' :messageObject='messageObject'
+					:isReceived='messageObject.isReceived'></MessageBox>
+			</div>
+			<form @submit.prevent='sendMessage'>
+				<InputBox id='chat-input' v-model='inputValue' placeholder='Type a chat message...' />
+			</form>
+		</div>
 	</div>
 </template>
 
@@ -119,12 +116,34 @@ html {
 }
 
 /* Desktop styling */
+/* Chat Window */
 .app {
+	margin: 0;
+	padding: 0;
 	display: grid;
-	grid-template-columns: 3fr 9fr;
+	grid-template-areas: 
+	"menu header"
+	"menu chat-window"
+	;
+	grid-template-columns: 4fr 9fr;
+	grid-template-rows: 0.5fr 10fr;
 	color: white;
+	height: 100vh;
 }
 
+.app > .chat-area {
+	grid-area: chat-window; 
+}
+
+.app > .menu {
+	grid-area: menu; 
+}
+
+.app > .chat-header { 
+	grid-area: header;
+}
+
+/* Menu  */
 .menu {
 	background-color: #191919;
 	background-image:
@@ -139,8 +158,8 @@ html {
 	"spacer"
 	"footer"
 	;
-	grid-template-rows: auto auto auto 1fr auto;
-	grid-gap: 5px;
+	grid-template-rows: auto auto auto 2fr auto;
+	grid-gap: 1px;
 }
 
 .menu > #meet {
@@ -174,10 +193,8 @@ html {
 	background-size: 50% 50%;
 	background-position: top right, bottom left, bottom right, top left;
 	background-repeat: no-repeat;
-	height: 100vh;
+	height: 100%;
 	display: flex;
 	flex-direction: column;
 }
-
-/* Mobile */
 </style>
