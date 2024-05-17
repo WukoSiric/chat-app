@@ -41,7 +41,7 @@ export default {
 
 <style>
 ::placeholder {
-	color: rgb(190, 190, 190);
+	color: rgb(121, 121, 121);
 	font-weight: 500;
 }
 
