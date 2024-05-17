@@ -10,20 +10,33 @@ export default {
 </script>
 <template>
     <div class="user-section">
-        <CogOutline id='cog-outline '/>
-        <p>Username</p>
+        <p id="username" class="user-component">Username</p>
+        <a href="" id="settings"> <CogOutline class="user-component" id='cog-outline'/> </a>
     </div>
 </template>
 <style>
-.user-section { 
-    display: flex; 
-    padding: 100px;
+
+.user-section {
+    background-color: #0d0d0d; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.user-component {
+    margin: 10px 20px;
 }
 
 #cog-outline { 
     width: 30px;
     height: 30px;
     fill: yellow; 
+}
+
+#username { 
+    color: white; 
+    font-weight: bold;
 }
 </style>
 
