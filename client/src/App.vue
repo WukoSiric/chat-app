@@ -1,7 +1,11 @@
 <script>
 import io from 'socket.io-client'; 
+import InputBox from './components/InputBox.vue';
 
 export default {
+  components: {
+    InputBox
+  },
   data() {
     return {
       inputValue: '', // Initialize input value as an empty string
@@ -30,8 +34,6 @@ export default {
       if (this.inputValue === '') {
         return;
       }
-
-      console.log('Sending message:', this.inputValue);
       this.socket.emit('message', {username: this.username, message: this.inputValue});
       this.inputValue = '';
     },
@@ -61,28 +63,43 @@ export default {
 
 <template>
   <div>
-    <h1>Some heading...</h1>
-    <p>Hello World!</p>
-    <h2> Adjust Username </h2>
-    <form> 
-      <input id="username" v-model="username" autocomplete='off'/>
-      {{ username }}
-    </form>
-    <h2> Chat </h2>
-    <form @submit.prevent='sendMessage'>
-      <input v-model='inputValue' autocomplete='off'/>
-      <button type='submit'>Send</button>
-    </form>
+    <div class='app'>
+      <div class='menu'>
+        {{ username }}
+      </div>
+      <div class='chatwindow'>
+        <ul class='messages'>
+          <li v-for='message in messages' :key='message'>
+            {{ message }}
+          </li>
+          </ul>
+          <form @submit.prevent='sendMessage'>
+            <InputBox v-model='inputValue' placeholder='Type a chat message...'/>
+          </form>
+      </div>
+    </div>
   </div>
-
   <div>
-    <ul id='messages'>
-      <li v-for='message in messages' :key='message'>
-        {{ message }}
-      </li>
-    </ul>
+
   </div>
 </template>
 
 <style>
+/* Desktop styling */
+  .app {
+    display: grid; 
+    grid-template-columns: 5fr 12fr;
+    color: white; 
+  }
+
+  .menu {
+    background-color: #191919;
+    height: 100%;
+    width: 100%;
+  }
+
+  .chatwindow {
+    background-color: #101010;
+  }
+/* Mobile */
 </style>
