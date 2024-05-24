@@ -15,6 +15,7 @@ export default {
 </script>
 <template>
 	<div class='menu'>
+		<div class="spacer-top"></div>
 		<MeetButton id="meet" />
 		<GlobalChatButton id="global-chat" />
 		<SearchBox id="search-box" :modelValue='query' placeholder='Search' />
@@ -32,13 +33,14 @@ export default {
 	height: 100vh;
 	display: grid;
 	grid-template-areas:
+		"spacer-top"
 		"meet"
 		"global-chat"
 		"search-box"
 		"spacer"
 		"footer"
 	;
-	grid-template-rows: auto auto auto 2fr auto;
+	grid-template-rows: 0.1fr auto auto auto 1fr auto;
 	grid-gap: 1px;
 }
 
@@ -57,6 +59,10 @@ export default {
 
 .menu>.spacer {
 	grid-area: spacer;
+}
+
+.menu>.spacer-top { 
+	grid-area: spacer-top;
 }
 
 .menu>#footer {
