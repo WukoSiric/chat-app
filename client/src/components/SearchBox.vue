@@ -49,7 +49,7 @@ export default {
 	margin: 20px;
 	padding: 10px;
 	width: 70%;
-	border: 2px solid white;
+	border: 3px solid white;
 	color: white;
 	border-radius: 10px;
 	font-size: 15px;
@@ -60,6 +60,10 @@ export default {
 
 #search-box:focus {
 	outline: 1px solid rgb(88, 88, 88);
+}
+
+#search-box::placeholder {
+	color: rgb(192, 192, 192); 
 }
 
 #search-box-container {
