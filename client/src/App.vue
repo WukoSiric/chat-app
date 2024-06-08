@@ -31,6 +31,7 @@ export default {
         if (response.ok) {
           const data = await response.json();
           this.username = data.username;
+          this.$store.commit("changeUsername", data.username);
         } else {
           // Response was not okay
         }
