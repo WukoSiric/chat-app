@@ -47,6 +47,10 @@ export default {
         background-color: white;
     }
 
+    #input::placeholder {
+        color: #464646;
+    }
+
     #input:focus {
         outline: 1px solid rgb(88, 88, 88);
     }

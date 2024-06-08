@@ -2,21 +2,15 @@
 import io from "socket.io-client";
 import InputBox from "./components/InputBox.vue";
 import MessageBox from "./components/MessageBox.vue";
-import SearchBox from "./components/SearchBox.vue";
-import MeetButton from "./components/MeetButton.vue";
-import GlobalChatButton from "./components/GlobalChatButton.vue";
-import UserSection from "./components/UserSection.vue";
 import ChatHeader from "./components/ChatHeader.vue";
+import ChatMenu from "./components/ChatMenu.vue";
 
 export default {
   components: {
     InputBox,
     MessageBox,
-    SearchBox,
-    MeetButton,
-    GlobalChatButton,
-    UserSection,
     ChatHeader,
+    ChatMenu,
   },
   data() {
     return {
@@ -37,7 +31,6 @@ export default {
         if (response.ok) {
           const data = await response.json();
           this.username = data.username;
-          this.$store.commit("changeUsername", data.username);
         } else {
           // Response was not okay
         }
@@ -86,14 +79,8 @@ export default {
 </script>
 <template>
   <div class="app">
-    <ChatHeader class="chat-header" />
-    <div class="menu">
-      <MeetButton id="meet" />
-      <GlobalChatButton id="global-chat" />
-      <SearchBox id="search-box" :modelValue="query" placeholder="Search" />
-      <div class="spacer"></div>
-      <UserSection id="user-section" />
-    </div>
+    <ChatHeader class="header" />
+    <ChatMenu class="menu" />
     <div class="chat-window">
       <div class="messages">
         <MessageBox
@@ -124,7 +111,8 @@ html {
   flex-direction: column;
   align-items: flex-end;
   margin: 20px 20px 0px 20px;
-  height: 90%;
+  min-height: 90%;
+  max-height: 1vh;
   overflow-y: auto;
 }
 
@@ -137,7 +125,7 @@ html {
   grid-template-areas:
     "menu header"
     "menu chat-window";
-  grid-template-columns: 4fr 9fr;
+  grid-template-columns: 3fr 9fr;
   grid-template-rows: 0.5fr 10fr;
   color: white;
   height: 100vh;
@@ -151,50 +139,8 @@ html {
   grid-area: menu;
 }
 
-.app > .chat-header {
+.app > .header {
   grid-area: header;
-}
-
-/* Menu  */
-.menu {
-  background-color: #191919;
-  background-image: radial-gradient(
-    circle at -15vw -40vh,
-    #f2d54152,
-    #191919 45%
-  );
-  background-repeat: no-repeat;
-  height: 100vh;
-  display: grid;
-  grid-template-areas:
-    "meet"
-    "global-chat"
-    "search-box"
-    "spacer"
-    "footer";
-  grid-template-rows: auto auto auto 2fr auto;
-  grid-gap: 1px;
-}
-
-.menu > #meet {
-  grid-area: meet;
-}
-
-.menu > #global-chat {
-  grid-area: global-chat;
-}
-
-.menu > #search-box {
-  grid-area: search-box;
-  justify-self: center;
-}
-
-.menu > .spacer {
-  grid-area: spacer;
-}
-
-.menu > #footer {
-  grid-area: footer;
 }
 
 .chat-window {
