@@ -1,12 +1,15 @@
 <script>
 import io from "socket.io-client";
+import LoginPage from "./views/LoginPage.vue";
 import InputBox from "./components/InputBox.vue";
 import MessageBox from "./components/MessageBox.vue";
 import ChatHeader from "./components/ChatHeader.vue";
 import ChatMenu from "./components/ChatMenu.vue";
+import socket from "./services/socket.js";
 
 export default {
   components: {
+    LoginPage,
     InputBox,
     MessageBox,
     ChatHeader,
@@ -32,8 +35,6 @@ export default {
           const data = await response.json();
           this.username = data.username;
           this.$store.commit("changeUsername", data.username);
-        } else {
-          // Response was not okay
         }
       } catch (error) {
         console.error("Error reaching server: ", error);
@@ -50,27 +51,18 @@ export default {
       this.inputValue = "";
     },
   },
-  mounted() {
+  created() {
     this.generateUsername();
-
-    this.socket = io("http://localhost:3000");
-
-    this.socket.on("connect", () => {
-      console.log("Connected to socket.io server!");
-    });
-
-    this.socket.on("disconnect", () => {
-      console.log("Disconnected from socket.io server!");
-    });
+    this.socket = socket;
 
     this.socket.on("message", ({ username, message }) => {
       console.log("Received message:", message);
       const isReceived = username !== this.username;
       this.messages.push({ username, message, isReceived });
     });
-
-    this.username = "Anonymous";
   },
+
+  mounted() {},
   computed: {
     usersMatch(messageObject) {
       return messageObject.username === this.username;
@@ -79,6 +71,7 @@ export default {
 };
 </script>
 <template>
+  <LoginPage />
   <div class="app">
     <ChatHeader class="header" />
     <ChatMenu class="menu" />

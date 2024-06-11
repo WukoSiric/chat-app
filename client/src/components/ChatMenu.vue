@@ -3,6 +3,7 @@ import SearchBox from "./SearchBox.vue";
 import MeetButton from "./MeetButton.vue";
 import GlobalChatButton from "./GlobalChatButton.vue";
 import UserSection from "./UserSection.vue";
+import socket from "../services/socket.js";
 
 export default {
   components: {
@@ -10,6 +11,34 @@ export default {
     MeetButton,
     GlobalChatButton,
     UserSection,
+  },
+  data() {
+    return {
+      onlineUsers: [],
+      socket: null,
+    };
+  },
+  methods: {
+    async getUsers() {
+      const response = await fetch("http://localhost:3000/getOnline");
+      if (response.ok) {
+        console.log("Success");
+        const users = await response.json();
+        users.forEach((user) => {
+          this.onlineUsers.push(user);
+        });
+      } else {
+        console.log("Failure");
+        console.log(response.text.json());
+      }
+    },
+  },
+  created() {
+    this.socket = socket;
+
+    this.socket.on("newConnection", ({ id }) => {
+      this.onlineUsers.push(id);
+    });
   },
 };
 </script>
@@ -19,7 +48,10 @@ export default {
     <MeetButton id="meet" />
     <GlobalChatButton id="global-chat" />
     <SearchBox id="search-box" modelValue="query" placeholder="Search" />
-    <div class="spacer"></div>
+    <div class="spacer">
+      <button @click="getUsers">Get Users</button>
+      {{ onlineUsers }}
+    </div>
     <UserSection id="user-section" />
   </div>
 </template>
